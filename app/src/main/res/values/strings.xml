@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">TalkbackDemo</string>
 
+    <string name="cheer">Cheer</string>
+    <string name="boo">Boo</string>
+
     <string name="actor_image">Profile image of %s</string>
-    <string name="favorite">Add to favorites</string>
-    <string name="unfavorite">Remove from favorites</string>
+    <string name="liked">Liked</string>
+    <string name="not_liked">Not liked</string>
 </resources>

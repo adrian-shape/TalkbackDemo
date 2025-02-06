@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -30,8 +31,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalAccessibilityManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dk.framna.talkbackdemo.ui.theme.TalkbackDemoTheme
@@ -54,11 +59,7 @@ fun ActorScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            actor.movieRoles.forEach { role ->
-                MovieRoleItem(role)
-            }
-        }
+        MovieRolesList(movieRoles = actor.movieRoles)
 
         Spacer(modifier = Modifier.height(20.dp))
     }
@@ -96,7 +97,7 @@ private fun ActorHeader(
             Button(
                 onClick = {}
             ) {
-                Text("Like")
+                Text(stringResource(R.string.cheer))
             }
 
             Spacer(Modifier.width(12.dp))
@@ -109,7 +110,7 @@ private fun ActorHeader(
                     .padding(horizontal = 24.dp, vertical = 8.dp)
             ) {
                 Text(
-                    text = "Disike",
+                    text = stringResource(R.string.boo),
                     color = Color.White
                 )
             }
@@ -117,15 +118,33 @@ private fun ActorHeader(
     }
 }
 
+
+@Composable
+private fun MovieRolesList(movieRoles: List<MovieRole>) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+    ) {
+        movieRoles.forEachIndexed { i, role ->
+            MovieRoleItem(
+                movieRole = role,
+                modifier = Modifier
+            )
+        }
+    }
+}
+
+
 @Composable
 private fun MovieRoleItem(
-    movieRole: MovieRole
+    movieRole: MovieRole,
+    modifier: Modifier = Modifier
 ) {
 
-    var isFavorite: Boolean by remember { mutableStateOf(false) }
+    var isLiked: Boolean by remember { mutableStateOf(false) }
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 68.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -156,7 +175,7 @@ private fun MovieRoleItem(
         Spacer(modifier = Modifier.weight(1f))
 
         val tint =
-            if (isFavorite) Color(0xFFFF606B)
+            if (isLiked) Color(0xFFFF606B)
             else Color.LightGray
 
         Image(
@@ -165,7 +184,7 @@ private fun MovieRoleItem(
             modifier = Modifier
                 .padding(end = 12.dp)
                 .clip(CircleShape)
-                .clickable { isFavorite = !isFavorite }
+                .clickable { isLiked = !isLiked }
                 .padding(12.dp)
                 .size(24.dp),
             contentDescription = null
