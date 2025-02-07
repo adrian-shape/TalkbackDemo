@@ -23,9 +23,11 @@ For this demo, we will explore adding screen reader support for TalkBack.
 
 Try building and launching the project on your phone, and navigate around with TalkBack. It should have "ok" support for screen readers out of the box, but has several flaws that we can fix.
 
-### ActorHeader composable
+### 1. ActorHeader composable
+![Actor header composable](media/actorheader.png)
 
-#### 1. Actor image
+#### Actor image
+
 The actor image does not have a content description, and instead has a default description of "Unlabelled, Image".
 
 Add a content description using `R.string.actor_image`
@@ -38,6 +40,7 @@ These two behave differently with a screen reader. The "Cheer" button is recogni
 Try adding the `Role.Button` semantics on the "Boo" button using `Modifier.semantics { role = Role.Button }`
 
 ### 2. MovieRoleItem composable
+![Movie role item composable](media/movieroleitem.png)
 
 #### Merge items
 In the movie role row, each sub-element is navigated individually.
