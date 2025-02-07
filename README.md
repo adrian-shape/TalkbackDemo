@@ -32,7 +32,7 @@ The actor image does not have a content description, and instead has a default d
 
 Add a content description using `R.string.actor_image`
 
-#### Like / Dislike buttons
+#### Boo button
 We have two buttons, one "Cheer" button that's using the Button composable, and a "Boo" button constructed manually using Box and `Modifier.clickable`.
 
 These two behave differently with a screen reader. The "Cheer" button is recognized semantically as a button but the "Boo" button is not.
@@ -47,7 +47,7 @@ In the movie role row, each sub-element is navigated individually.
 
 Try merging the elements in the row using `Modifier.semantics (mergeDescendants = true) {}`
 
-#### Favorite button
+#### Heart button
 The favorite button has a default description of "Unlabelled, Image".
 
 Change `Modifier.clickable` to `Modifier.toggleable`
