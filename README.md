@@ -56,6 +56,8 @@ Add a `Modifier.semantics` with a stateDescription of either `R.string.liked` or
 Also add a role of `Role.Switch` to get switch semantics
 
 ### 3. MovieRolesList composable
+
+#### List item semantics
 Each list item is navigated individually, but we can add semantics to navigate them as list items in a list. 
 
 In the column, add a `Modifier.semantics` with `collectionInfo = CollectionInfo(columnCount = movieRoles.size, rowCount = 1)` to add list semantics.
