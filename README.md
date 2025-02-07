@@ -52,7 +52,7 @@ The favorite button has a default description of "Unlabelled, Image".
 
 Change `Modifier.clickable` to `Modifier.toggleable`
 
-Add a `Modifier.semantics` with a stateDescription of either `R.string.liked` or `R.string.liked` depending on the state.
+Add a `Modifier.semantics` with a stateDescription of `R.string.liked` or `R.string.not_liked` depending on the state.
 Also add a role of `Role.Switch` to get switch semantics
 
 ### 3. MovieRolesList composable
@@ -60,9 +60,9 @@ Also add a role of `Role.Switch` to get switch semantics
 #### List item semantics
 Each list item is navigated individually, but we can add semantics to navigate them as list items in a list. 
 
-In the column, add a `Modifier.semantics` with `collectionInfo = CollectionInfo(columnCount = movieRoles.size, rowCount = 1)` to add list semantics.
+In the parent column, add a `Modifier.semantics` with `collectionInfo = CollectionInfo(columnCount = movieRoles.size, rowCount = 1)` to add list semantics.
 
-For each item, pass down a `Modifier.semantics` with `collectionItemInfo` with the corresponding columnIndex in the list (the rest of the properties can be left as 1)
+For each list item, pass down a `Modifier.semantics` with `collectionItemInfo` to the list item composable with the corresponding columnIndex in the list (the rest of the properties can be left as 1)
 
 
 ## More information
