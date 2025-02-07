@@ -7,6 +7,8 @@ For this demo, we will explore adding screen reader support for TalkBack.
 
 ### Setup TalkBack
 
+![Display speech output setting](media/talkbacksettings.png)
+
 - Open settings 
 - Navigate to Accessibility > Settings > TalkBack > Settings > Advanced settings > Developer settings
 - Enable “Display speech output”
